@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAMv3 - Full Screen Mode</title>
+    <style>
+        :root {
+            --bg-color: #050505;
+            --neon-cyan: #00f3ff;
+            --neon-pink: #ff00ff;
+            --neon-yellow: #f9d423;
+            --card-bg: #0a0a0a;
+            --text-gray: #aaaaaa;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Container que ocupa 100% da largura com um respiro nas laterais */
+        .fluid-container {
+            width: 100%;
+            padding: 0 40px; /* Margem interna para não colar na borda física */
+        }
+
+        /* Header ocupando toda a largura */
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--neon-cyan);
+            padding: 20px 40px;
+            background: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 4px 20px rgba(0, 243, 255, 0.3);
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.8rem;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        /* Seção de Título */
+        .hero {
+            padding: 60px 40px 20px 40px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin: 0;
+            border-left: 8px solid var(--neon-pink);
+            padding-left: 20px;
+        }
+
+        /* Barra de Busca Gigante */
+        .search-section {
+            padding: 20px 40px;
+        }
+
+        .search-bar {
+            width: 100%;
+            background: #111;
+            border: 2px solid #222;
+            padding: 20px;
+            color: white;
+            font-size: 1.2rem;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        .search-bar:focus {
+            border-color: var(--neon-cyan);
+        }
+
+        /* Grid de Cursos - Aqui é onde o preenchimento acontece */
+        .course-grid {
+            display: grid;
+            /* O 'repeat(auto-fit...)' faz com que os cards se espalhem para ocupar o espaço vazio */
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 40px;
+            flex-grow: 1;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid #1a1a1a;
+            padding: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 220px;
+            background: #151515;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .price-tag {
+            color: var(--neon-yellow);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Footer Full Width */
+        footer {
+            width: 100%;
+            background: #080808;
+            border-top: 1px solid var(--neon-pink);
+            padding: 50px 40px;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .stat-box {
+            border-left: 1px solid #222;
+            padding-left: 20px;
+        }
+
+        .stat-value {
+            display: block;
+            font-size: 1.5rem;
+            color: var(--neon-cyan);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">GAMv3</div>
+        <nav>
+            <a href="#">Sobre Nós</a>
+            <a href="#">Categorias</a>
+            <a href="#">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>CATEGORIAS</h1>
+            <p style="color: var(--text-gray); margin-top: 10px;">Explore todos os cursos disponíveis na plataforma.</p>
+        </section>
+
+        <section class="search-section">
+            <input type="text" class="search-bar" placeholder="BUSCAR CURSO NO SISTEMA...">
+        </section>
+
+        <div class="course-grid">
+            <!-- Os cards agora esticam para preencher o monitor -->
+            <div class="card">
+                <div class="card-img">IMAGEM DO CURSO</div>
+                <div style="display:flex; justify-content: space-between;">
+                    <span style="color:var(--neon-cyan)">CURSO DE WEB DESIGN</span>
+                    <span class="price-tag">R$ 199</span>
+                </div>
+                <p style="font-size: 0.9rem; color: #777;">Domine as ferramentas de interface.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-img">IMAGEM DO CURSO</div>
+                <div style="display:flex; justify-content: space-between;">
+                    <span style="color:var(--neon-cyan)">BACKEND MASTER</span>
+                    <span class="price-tag">R$ 250</span>
+                </div>
+                <p style="font-size: 0.9rem; color: #777;">Node.js, bancos de dados e APIs.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-img">IMAGEM DO CURSO</div>
+                <div style="display:flex; justify-content: space-between;">
+                    <span style="color:var(--neon-cyan)">DATA SCIENCE</span>
+                    <span class="price-tag">R$ 320</span>
+                </div>
+                <p style="font-size: 0.9rem; color: #777;">Análise de dados com Python.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-img">IMAGEM DO CURSO</div>
+                <div style="display:flex; justify-content: space-between;">
+                    <span style="color:var(--neon-cyan)">DEVOPS NINJA</span>
+                    <span class="price-tag">R$ 280</span>
+                </div>
+                <p style="font-size: 0.9rem; color: #777;">Docker, Kubernetes e CI/CD.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <span class="logo">GAMv3</span>
+                <p style="color: #555; font-size: 0.8rem;">2026 © Todos os direitos reservados.</p>
+            </div>
+            <div class="stat-box">
+                <span style="color: var(--neon-pink);">ALUNOS</span>
+                <span class="stat-value">2.547</span>
+            </div>
+            <div class="stat-box">
+                <span style="color: var(--neon-pink);">CURSOS</span>
+                <span class="stat-value">04</span>
+            </div>
+            <div class="stat-box">
+                <span style="color: var(--neon-pink);">XP TOTAL</span>
+                <span class="stat-value">1.2M</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

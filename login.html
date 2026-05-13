@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - GamV3</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ==========================================
+   BODY
+   ========================================== */
+
+body.login-page{
+    background: #0a0a0a;
+    color: #ffffff;
+    font-family: 'Rajdhani', sans-serif;
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+    position: relative;
+}
+
+/* GRID CYBERPUNK */
+
+body.login-page::before{
+    content: '';
+    position: fixed;
+    inset: 0;
+
+    background-image:
+        linear-gradient(rgba(0,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,255,0.04) 1px, transparent 1px);
+
+    background-size: 40px 40px;
+
+    pointer-events: none;
+    z-index: -2;
+}
+
+/* EFEITO DE LINHAS */
+
+body.login-page::after{
+    content: '';
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0,0,0,0.05) 2px,
+            rgba(0,0,0,0.05) 4px
+        );
+
+    pointer-events: none;
+    z-index: 999;
+}
+
+/* ==========================================
+   CONTAINER
+   ========================================== */
+
+.login-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-container{
+    width: 400px;
+
+    background: rgba(10, 10, 10, 0.92);
+
+    border: 1px solid rgba(0,255,255,0.3);
+
+    border-radius: 12px;
+
+    padding: 40px;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 0 20px rgba(0,255,255,0.2),
+        0 0 60px rgba(0,255,255,0.08);
+
+    transition: 0.4s;
+}
+
+.login-container:hover{
+    box-shadow:
+        0 0 30px rgba(0,255,255,0.35),
+        0 0 70px rgba(0,255,255,0.15);
+}
+
+/* ==========================================
+   HEADER
+   ========================================== */
+
+.login-header{
+    text-align: center;
+}
+
+.logo-animada{
+    width: 90px;
+    margin-bottom: 20px;
+
+    animation: pulse 2s infinite;
+}
+
+.login-header h1{
+    font-family: 'Press Start 2P', monospace;
+    font-size: 28px;
+
+    color: #00ffff;
+
+    text-shadow:
+        0 0 10px #00ffff,
+        0 0 20px #00ffff;
+
+    margin-bottom: 20px;
+}
+
+.login-header p{
+    color: #bdbdbd;
+    font-size: 18px;
+}
+
+/* ==========================================
+   DIVISOR
+   ========================================== */
+
+.divider{
+    border: none;
+    height: 1px;
+
+    background: linear-gradient(
+        to right,
+        transparent,
+        #00ffff,
+        transparent
+    );
+
+    margin: 30px 0;
+}
+
+/* ==========================================
+   FORM
+   ========================================== */
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.input-group{
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label{
+    color: #00ffff;
+    margin-bottom: 8px;
+
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 14px;
+
+    text-transform: uppercase;
+}
+
+.input-group input{
+    background: rgba(255,255,255,0.05);
+
+    border: 1px solid rgba(0,255,255,0.3);
+
+    border-radius: 6px;
+
+    padding: 14px;
+
+    color: white;
+
+    outline: none;
+
+    transition: 0.3s;
+
+    font-size: 16px;
+}
+
+.input-group input:focus{
+    border-color: #00ffff;
+
+    box-shadow:
+        0 0 10px rgba(0,255,255,0.5);
+
+    background: rgba(0,255,255,0.05);
+}
+
+.input-group input::placeholder{
+    color: #777;
+}
+
+/* ==========================================
+   FORGOT PASSWORD
+   ========================================== */
+
+.forgot-password{
+    text-align: right;
+}
+
+.forgot-password a{
+    color: #ff2d78;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.forgot-password a:hover{
+    text-shadow: 0 0 10px #ff2d78;
+}
+
+/* ==========================================
+   BOTÃO LOGIN
+   ========================================== */
+
+.btn-login{
+    font-family: 'Press Start 2P', monospace;
+
+    background: transparent;
+
+    color: #00ffff;
+
+    border: 1px solid #00ffff;
+
+    padding: 15px;
+
+    cursor: pointer;
+
+    text-transform: uppercase;
+
+    transition: 0.3s;
+
+    margin-top: 10px;
+}
+
+.btn-login:hover{
+    background: rgba(0,255,255,0.15);
+
+    box-shadow:
+        0 0 15px #00ffff;
+
+    transform: translateY(-3px);
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+
+.login-footer{
+    text-align: center;
+}
+
+.login-footer p{
+    color: #bdbdbd;
+    margin-bottom: 18px;
+}
+
+.btn-signup{
+    display: inline-block;
+
+    text-decoration: none;
+
+    font-family: 'Press Start 2P', monospace;
+
+    font-size: 10px;
+
+    color: #ff2d78;
+
+    border: 1px solid #ff2d78;
+
+    padding: 14px 18px;
+
+    transition: 0.3s;
+}
+
+.btn-signup:hover{
+    background: rgba(255,45,120,0.15);
+
+    box-shadow:
+        0 0 15px #ff2d78;
+
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   VOLTAR HOME
+   ========================================== */
+
+.back-home{
+    margin-top: 25px;
+}
+
+.back-home a{
+    color: #00ffff;
+
+    text-decoration: none;
+
+    font-family: 'Share Tech Mono', monospace;
+
+    transition: 0.3s;
+}
+
+.back-home a:hover{
+    text-shadow: 0 0 10px #00ffff;
+}
+
+/* ==========================================
+   ANIMAÇÕES
+   ========================================== */
+
+@keyframes pulse{
+    0%{
+        transform: scale(1);
+        filter: drop-shadow(0 0 5px #00ffff);
+    }
+
+    50%{
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 15px #00ffff);
+    }
+
+    100%{
+        transform: scale(1);
+        filter: drop-shadow(0 0 5px #00ffff);
+    }
+}
+
+/* ==========================================
+   RESPONSIVO
+   ========================================== */
+
+@media(max-width: 500px){
+
+    .login-container{
+        width: 90%;
+        padding: 30px 20px;
+    }
+
+    .login-header h1{
+        font-size: 22px;
+    }
+
+    .btn-signup{
+        font-size: 8px;
+    }
+    </style>
+</head>
+
+<body class="login-page">
+
+    <main class="login-wrapper">
+
+        <div class="login-container">
+
+            <!-- Topo -->
+            <header class="login-header">
+                <img src="logo.png" alt="logo" class="logo-animada">
+
+                <h1>GamV3</h1>
+
+                <p>Para continuar, faça login no GamV3.</p>
+            </header>
+
+            <hr class="divider">
+
+            <!-- Formulário -->
+            <form action="seu-endpoint" method="POST" class="login-form">
+
+                <div class="input-group">
+                    <label for="email">E-mail</label>
+
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="E-mail" 
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Senha</label>
+
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Senha" 
+                        required
+                    >
+                </div>
+
+                <div class="forgot-password">
+                    <a href="#">Esqueceu sua senha?</a>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    ENTRAR
+                </button>
+
+            </form>
+
+            <hr class="divider">
+
+            <!-- Rodapé -->
+            <footer class="login-footer">
+
+                <p>Não tem uma conta?</p>
+
+                <a href="cadastro.html" class="btn-signup">
+                    INSCREVER-SE NO GAMV3
+                </a>
+
+            </footer>
+
+        </div>
+
+        <div class="back-home">
+            <a href="menu.html">Página Inicial</a>
+        </div>
+
+    </main>
+
+</body>
+</html>
